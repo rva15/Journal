@@ -1,5 +1,6 @@
 import React from 'react';
 import Note from './Note'
+import './notesLoader.css';
 
 export default class NotesLoader extends React.Component {
 
@@ -11,7 +12,9 @@ export default class NotesLoader extends React.Component {
             notesList.push(<Note body={notesData[i].body} key={i} />)
         }
         return (
-            notesList
+            <div className="loader-container">
+            {notesList}
+            </div>
         )
     }
 }

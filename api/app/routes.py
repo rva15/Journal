@@ -17,7 +17,9 @@ def index():
         },
         {
             'timestamp': '02/12/2020',
-            'body': 'The Avengers movie was so cool!'
+            'body': '''The Avengers movie was so cool that it sucked to leave!
+            but I shall be back for more. I am a big fan of iron man and hulk.
+            Thor is also pretty dope. He is the lord of thunder!!'''
         }
         ]
     }
