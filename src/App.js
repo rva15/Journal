@@ -15,11 +15,11 @@ function App() {
   }, []);
 
   return (
-      <div className="app-container">
-        {!(Object.keys(note).length === 0 && note.constructor === Object) ?
-          <NotesLoader notesData={note.posts} /> :
-          <Note body={""} />
-        }
+    <div className="app-container">
+      {!(Object.keys(note).length === 0 && note.constructor === Object) ?
+        <NotesLoader notesData={note.posts} /> :
+        <Note body={""} />
+      }
     </div>
   );
 }

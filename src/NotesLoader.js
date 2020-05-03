@@ -13,7 +13,7 @@ export default class NotesLoader extends React.Component {
         }
         return (
             <div className="loader-container">
-            {notesList}
+                {notesList}
             </div>
         )
     }
