@@ -1,6 +1,8 @@
 import time
+import json
 from flask import jsonify
-from app import app
+from app import app, db
+from app.models import User, Note
 
 @app.route('/time')
 def get_current_time():
@@ -9,19 +11,21 @@ def get_current_time():
 @app.route('/')
 @app.route('/index')
 def index():
-    posts = {
-        "posts" : [
-        {
-            'timestamp': '01/02/2020',
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'timestamp': '02/12/2020',
-            'body': '''The Avengers movie was so cool that it sucked to leave!
-            but I shall be back for more. I am a big fan of iron man and hulk.
-            Thor is also pretty dope. He is the lord of thunder!!'''
-        }
-        ]
-    }
-    return (posts)
+    def alchemyencoder(obj):
+        """JSON encoder function for SQLAlchemy special classes."""
+        if isinstance(obj, datetime.date):
+            return obj.isoformat()
+        elif isinstance(obj, decimal.Decimal):
+            return float(obj)
+    
+    def row2dict(row):
+        d = {}
+        for column in row.__table__.columns:
+            d[column.name] = str(getattr(row, column.name))
 
+        return d
+
+    user = User.query.filter(User.username=='ruturaj').first()
+    notes = user.notes.all()
+    notesData = json.dumps([row2dict(r) for r in notes], default=alchemyencoder)
+    return jsonify(notesData)

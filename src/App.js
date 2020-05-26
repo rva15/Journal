@@ -5,19 +5,20 @@ import Note from './Note'
 import './app.css';
 
 function App() {
-  const [note, setNote] = useState({});
+  const [notesData, setNotesData] = useState({});
 
   useEffect(() => {
     fetch('/index').then(res => res.json()).then(
       data => {
-        setNote(data);
+        setNotesData(JSON.parse(data));
       });
   }, []);
 
+
   return (
     <div className="app-container">
-      {!(Object.keys(note).length === 0 && note.constructor === Object) ?
-        <NotesLoader notesData={note.posts} /> :
+      {!(Object.keys(notesData).length === 0 && notesData.constructor === Object) ?
+        <NotesLoader notesData={notesData} /> :
         <Note body={""} />
       }
     </div>

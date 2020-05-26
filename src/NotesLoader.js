@@ -5,7 +5,6 @@ import './notesLoader.css';
 export default class NotesLoader extends React.Component {
 
     render() {
-        console.log(this.props.notesData)
         const notesData = this.props.notesData;
         const notesList = [];
         for (var i = 0; i < notesData.length; i++) {
