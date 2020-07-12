@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
 import NotesLoader from './NotesLoader'
-import Note from './Note'
 import './app.css';
 
 function App() {
@@ -10,16 +9,15 @@ function App() {
   useEffect(() => {
     fetch('/index').then(res => res.json()).then(
       data => {
-        setNotesData(JSON.parse(data));
+        setNotesData(data);
       });
   }, []);
-
 
   return (
     <div className="app-container">
       {!(Object.keys(notesData).length === 0 && notesData.constructor === Object) ?
         <NotesLoader notesData={notesData} /> :
-        <Note body={""} />
+        null
       }
     </div>
   );

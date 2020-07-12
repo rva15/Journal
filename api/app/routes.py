@@ -1,6 +1,6 @@
 import time
 import json
-from flask import jsonify
+from flask import make_response
 from app import app, db
 from app.models import User, Note
 
@@ -28,4 +28,6 @@ def index():
     user = User.query.filter(User.username=='ruturaj').first()
     notes = user.notes.all()
     notesData = json.dumps([row2dict(r) for r in notes], default=alchemyencoder)
-    return jsonify(notesData)
+    resp = make_response(notesData)
+    resp.headers['Content-Type'] = 'json'
+    return resp

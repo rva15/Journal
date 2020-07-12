@@ -8,7 +8,7 @@ export default class NotesLoader extends React.Component {
         const notesData = this.props.notesData;
         const notesList = [];
         for (var i = 0; i < notesData.length; i++) {
-            notesList.push(<Note body={notesData[i].body} key={i} />)
+            notesList.push(<Note thisNote={notesData[i]} key={i} />)
         }
         return (
             <div className="loader-container">
