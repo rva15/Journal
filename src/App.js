@@ -7,7 +7,7 @@ function App() {
   const [notesData, setNotesData] = useState({});
 
   useEffect(() => {
-    fetch('/index').then(res => res.json()).then(
+    fetch('/journal/api/notes').then(res => res.json()).then(
       data => {
         setNotesData(data);
       });
