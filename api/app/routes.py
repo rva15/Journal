@@ -23,6 +23,18 @@ def get_note_by_id(note_id):
     noteData = convert_to_json([note])
     return construct_response(noteData)
 
+@app.route('/journal/api/notes/<int:note_id>', methods=['PUT'])
+def update_note_by_id(note_id):
+    if not request.json:
+        abort(400)
+    update_request = {Note.body:request.json['body']}
+    res = db.session.query(Note).filter_by(id=note_id)
+    if res.first() is None:
+        abort(400)
+    res.update(update_request)
+    db.session.commit()
+    return make_response({}, 204)
+
 @app.route('/journal/api/notes', methods=['POST'])
 def create_note():
     if not request.json:
@@ -31,7 +43,16 @@ def create_note():
     note = Note(body=request.json['body'], author=user)
     db.session.add(note)
     db.session.commit()
-    return make_response({}, 201)
+    return make_response({}, 204)
+
+@app.route('/journal/api/notes/<int:note_id>', methods=['DELETE'])
+def delete_note_by_id(note_id):
+    note = Note.query.get(note_id)
+    if not note:
+        abort(404)
+    db.session.delete(note)
+    db.session.commit()
+    return make_response({},204)
 
 @app.errorhandler(400)
 def not_found(error):
