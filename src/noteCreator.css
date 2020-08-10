@@ -1,0 +1,22 @@
+.creator-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 100%;
+    height: 15%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #696969;
+}
+
+.textarea-style {
+    display: flex;
+    margin-left: 10px;
+    height: 70%;
+    margin-right: 10px;
+}
+
+.creator-action-bar {
+    float: right;
+    margin-right: 10px;
+}

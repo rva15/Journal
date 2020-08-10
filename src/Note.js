@@ -5,10 +5,19 @@ export default class Note extends React.Component {
 
     render() {
         const noteData = this.props.thisNote
-        console.log(noteData)
         return (
             <div className="note-container">
-                {noteData.body}
+                <div className="note-body">
+                    {noteData.body}
+                </div>
+                <div className="note-action-bar">
+                    <button className="note-button">
+                        Edit
+            </button>
+                    <button className="note-button">
+                        Delete
+            </button>
+                </div>
             </div>
         );
     }

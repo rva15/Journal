@@ -1,7 +1,19 @@
 .note-container {
-    text-align: left;
-    background-color: white;
-    color: black;
-    padding: 10px;
-    margin: 20px;
-  }
+  background-color: white;
+  padding: 10px;
+  margin: 20px;
+}
+
+.note-body {
+  text-align: left;
+  color: black;
+}
+
+.note-button {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.note-action-bar {
+  float: right;
+}

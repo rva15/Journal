@@ -1,5 +1,7 @@
-.loader-container {
+.timeline-container {
     display: flex;
     background-color: #282c34;
     flex-direction: column;
+    width: 30%;
   }
+
