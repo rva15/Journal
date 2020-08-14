@@ -10,6 +10,7 @@ export default class NotesLoader extends React.Component {
     }
 
     componentDidMount() {
+        // testing git username
         fetch('/journal/api/notes').then(res => res.json()).then(
             data => {
               this.setState({notesData: data});
