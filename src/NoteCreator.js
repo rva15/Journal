@@ -12,16 +12,12 @@ export default class NoteCreator extends React.Component {
 
     handleChange(event) {
         this.setState({value: event.target.value});
-      }
+    }
     
-      handleSubmit(event) {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ body: this.state.value })
-        };
-        fetch('/journal/api/notes', requestOptions)
-      }
+    handleSubmit(event) {
+        this.props.onNoteSubmit(this.state.value);
+        this.setState({value: ''})
+    }
     
     render() {
         return (
