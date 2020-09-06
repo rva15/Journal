@@ -2,6 +2,7 @@ import time
 import json
 from flask import make_response, abort
 from flask import jsonify, request
+from flask_login import logout_user
 from app import app, db
 from app.models import User, Note
 
@@ -53,6 +54,11 @@ def delete_note_by_id(note_id):
     db.session.delete(note)
     db.session.commit()
     return make_response({},204)
+
+@app.route('/journal/logout')
+def logout():
+    logout_user()
+    return
 
 @app.errorhandler(400)
 def not_found(error):
