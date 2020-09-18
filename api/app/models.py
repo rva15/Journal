@@ -1,7 +1,8 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import UserMixin
-from app import db, login
+import jwt
+from app import db, login, Config
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -18,6 +19,22 @@ class User(UserMixin, db.Model):
     
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+    
+    def encode_auth_token(self):
+        try:
+            payload = {
+                'exp': datetime.utcnow() + timedelta(days=1, seconds=0),
+                'iat': datetime.utcnow(),
+                'sub': self.id
+            }
+            return jwt.encode(
+                payload,
+                Config.JWT_SECRET,
+                algorithm ='HS256'
+            )
+        except Exception as e:
+            return e
+
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
