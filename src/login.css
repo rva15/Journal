@@ -1,0 +1,21 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 25%;
+    margin-top: 30px;
+    background-color: #696969;
+}
+
+.text-input-style {
+    margin: 5px;
+    width: 400px;
+    height: 25px;
+}
+
+.button-style {
+    margin: 5px;
+    width: 30%;
+    justify-content: center;
+}
